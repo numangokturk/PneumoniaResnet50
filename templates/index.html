@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zatürre Tespiti</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body class="bg-light" id="main-body">
+    <!-- Üst Menü -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">Zatürre Tespiti</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Hakkında</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">İletişim</a>
+                    </li>
+                </ul>
+                <!-- Gece/Günlüz Modu Butonu -->
+                <button id="theme-toggle" class="btn btn-outline-light ms-3">Gece Modu</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <!-- Yan Panel -->
+            <aside class="col-md-3">
+                <div class="card shadow-sm mb-4 border-0">
+                    <div class="card-header bg-info text-white fw-bold">Zatürre Hakkında</div>
+                    <div class="card-body">
+                        <p>Zatürre, akciğerlerdeki hava keselerinin iltihaplanması sonucu oluşan ciddi bir hastalıktır. Farklı mikroorganizmalardan kaynaklanabilir.</p>
+                        <p><b>Zatürre Türleri:</b></p>
+                        <ul>
+                            <li><b>Viral zatürre:</b> Viral zatürre, bakteriyel zatürreden farklı olarak virüslerin neden olduğu bir enfeksiyondur ve genellikle grip benzeri belirtilerle başlar.</li>
+                            <li><b>Bakteriyel zatürre:</b> Genellikle Streptococcus pneumoniae bakterisi tarafından oluşur. Zatürrenin belirtileri arasında öksürük, yüksek ateş, göğüs ağrısı, nefes almada zorluk ve yorgunluk yer alır.</li>
+                            <li><b>Fırsatçı zatürre:</b> Zayıflamış bağışıklık sistemine sahip kişilerde görülür.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Hakkında Section moved to sidebar -->
+                <div id="about" class="card shadow-sm mb-4 border-0">
+                    <div class="card-header bg-info text-white fw-bold">Hakkında</div>
+                    <div class="card-body">
+                        <p class="text-center">Bu model, <b>5856 farklı insanın göğüs röntgeni</b> ile eğitilmiş olup, başarı oranı %86'ın üzerindedir. Bu başarı oranı, hastalıkların daha hızlı ve doğru bir şekilde tespit edilmesine olanak tanımaktadır.</p>
+                        <p class="text-center">Veri setine <a href="https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia" target="_blank" class="text-primary">buradan</a> ulaşabilirsiniz. İlgili kaynaklar için lütfen bu bağlantıyı takip ediniz.</p>
+                    </div>
+                </div>
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-warning text-dark fw-bold">Korunma Yöntemleri</div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Aşı olun.</li>
+                            <li>Hijyen kurallarına dikkat edin.</li>
+                            <li>Sigaradan uzak durun.</li>
+                            <li>Düzenli sağlık kontrolleri yaptırın.</li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+            
+
+            <!-- Ana İçerik -->
+            <main class="col-md-9">
+                <div class="text-center">
+                    <h1 class="text-primary">Zatürre (Pneumonia) Tespiti Uygulaması</h1>
+                    <p class="lead">Eğitilmiş modelimizi kullanarak zatürre teşhis edin.</p>
+                </div>
+
+                <div class="card mx-auto shadow-lg p-4 border-0" style="max-width: 600px;">
+                    <form action="/predict" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="file" class="form-label">Bir göğüs röntgeni yükleyin:</label>
+                            <input type="file" name="file" class="form-control" id="file">
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 upload-btn">Görsel Yükle ve Analiz Et</button>
+                    </form>
+                </div>
+
+                <div class="card mx-auto shadow-lg p-4 mt-4 border-0 prediction-container">
+                    {% if prediction %}
+                    <h3 class="text-center text-info">Sonuç: {{ prediction }}</h3>
+                    <p class="text-center text-secondary">Güven: {{ confidence|round(2) }}%</p>
+
+
+
+                    
+                    {% endif %}
+
+                    <div class="text-center">
+                        <img src="{{ image }}" alt="Yüklenen Görsel" class="prediction-img mt-3">
+                    </div>
+                    <div class="text-center mt-4">
+                        <img src="../static/tablo.jpg" alt="Tablo Görseli" class="table-img">
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Altbilgi -->
+    <footer id="contact" class="bg-dark text-light text-center py-4" id="footer">
+        <div class="container">
+            <h5>İletişim</h5>
+            <p>E-posta: <a href="mailto:ngoktyrk@gmail.com" class="text-light">ngoktyrk@gmail.com</a></p>
+            <p>Sosyal Medya:</p>
+            <a href="https://instagram.com/numangokturk" target="_blank" class="btn btn-outline-light btn-sm mx-1">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://twitter.com/numangokturk" target="_blank" class="btn btn-outline-light btn-sm mx-1">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+            <p class="mt-3">&copy; 2024 Zatürre Tespiti. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Tema değiştirme fonksiyonu
+        const toggleButton = document.getElementById("theme-toggle");
+        const mainBody = document.getElementById("main-body");
+        const footer = document.getElementById("footer");
+
+        toggleButton.addEventListener("click", () => {
+            if (mainBody.classList.contains("bg-light")) {
+                mainBody.classList.remove("bg-light");
+                mainBody.classList.add("bg-dark", "text-light");
+                footer.classList.remove("bg-dark", "text-light");
+                footer.classList.add("bg-secondary", "text-dark", "border-bottom", "border-dark");
+                toggleButton.textContent = "Günüz Modu";
+            } else {
+                mainBody.classList.remove("bg-dark", "text-light");
+                mainBody.classList.add("bg-light");
+                footer.classList.remove("bg-secondary", "text-dark", "border-bottom", "border-dark");
+                footer.classList.add("bg-dark", "text-light");
+                toggleButton.textContent = "Gece Modu";
+            }
+        });
+    </script>
+</body>
+</html>

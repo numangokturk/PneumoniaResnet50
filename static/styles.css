@@ -1,0 +1,142 @@
+/* Genel stil ayarları */
+body {
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2 {
+    font-size: 2.5rem;
+}
+
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.bg-dark {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+}
+
+.bg-dark .card {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+footer {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Gece Modu */
+body.bg-dark {
+    background-color: #121212 !important;
+}
+body.bg-dark .navbar-dark {
+    background-color: #333 !important;
+}
+body.bg-dark .navbar-dark .nav-link {
+    color: #ddd;
+}
+body.bg-dark .bg-dark {
+    background-color: #333 !important;
+}
+footer.bg-dark {
+    background-color: #1c1c1c !important;
+}
+.table-img {
+    width: 700px; /* Görselin genişliğini konteyner boyutuna göre ayarlar */
+    height: 300px;    /* Oranları koruyarak yüksekliği ayarlar */
+
+    margin-top: 20px; /* Üstten boşluk */
+    border-radius: 8px; /* Yuvarlatılmış köşeler */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+}
+
+/* Dosya seçme kısmı ve buton boyutlandırma */
+#file {
+    font-size: 1.2rem;
+    padding: 10px;
+    width: 100%;  /* Dosya seçme butonunun genişliğini ayarladık */
+}
+
+.upload-btn {
+    padding: 15px;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+.prediction-container {
+    max-width: 500px;  /* Görselin konteynerinin genişliğini sınırladık */
+    margin-top: 20px;
+    margin-left: auto;  /* Ortalanmasını sağlamak için */
+    margin-right: auto; /* Ortalanmasını sağlamak için */
+    text-align: center;
+}
+
+.prediction-img {
+    max-width: 80%;  /* Görselin genişliğini %80 olarak sınırlandırdık */
+    height: auto;
+    border-radius: 8px;  /* Görsele yuvarlatılmış köşeler ekledik */
+}
+
+/* Üst Menü */
+.navbar {
+    margin-bottom: 50px;
+}
+
+/* Alt Menü */
+footer.bg-dark {
+    background-color: #1c1c1c !important;
+    border-top: 2px solid #333;  /* Alt kısmın üst sınırını ekledik */
+}
+
+/* Yüklenen fotoğraf kısmı */
+.prediction-container {
+    max-width: 800px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.prediction-img {
+    max-width: 80%;  /* Görselin genişliğini %80 olarak sınırlandırdık */
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Hakkında kısmı */
+#about {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Gece/Gündüz Modu Butonu */
+#theme-toggle {
+    font-size: 1.1rem;
+    padding: 8px 15px;
+}
+
+/* Sayfanın Genel Düzeni */
+.container-fluid {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.card-header {
+    font-size: 1.2rem;
+}
+
+footer {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
